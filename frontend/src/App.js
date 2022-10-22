@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,9 +18,11 @@ import {
 import {Home} from './pages/Home';
 import {About} from './pages/About';
 import {NavBar} from './components/navbar';
+import axios from "axios";
 
 
 function App() {
+  const [file, setFile] = useState('');
 
   // //example of API integration with the backend 
   // //GET request to /test 
@@ -36,6 +38,21 @@ function App() {
   //   .then(({data}) => console.log(data.status));
   // }, [])
 
+const uploadFile = (e) => {
+  e.preventDefault();
+  const uploadedFile = e.target.files[0]
+      console.log('uploadedFile', uploadedFile);
+      const formData = new FormData();
+      formData.append("title", 'receipt');
+      formData.append('file', uploadedFile);
+
+      // for (const value of formData.values()) {
+      //   console.log('formData val', value);
+      // }
+
+      axios.post('/receipts/scan', formData).then(({data}) => console.log('data', data));
+    }
+
 
   return (
     <Router>
@@ -43,6 +60,14 @@ function App() {
     <NavBar/>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
+
+        <input
+          type="file"
+          name="file"
+          id="file"
+          onChange={(e) => uploadFile(e)}
+        />
+
           
           <VStack spacing={8}>
            
