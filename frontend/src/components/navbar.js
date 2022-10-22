@@ -1,4 +1,3 @@
-
 import {
   Box,
   Flex,
@@ -29,12 +28,13 @@ const NavLink = ({ children }) => (
       textDecoration: 'none',
       bg: useColorModeValue('gray.200', 'gray.700'),
     }}
-    href={'#'}>
+    href={'#'}
+  >
     {children}
   </Link>
 );
 
-export  function NavBar() {
+export function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -53,8 +53,9 @@ export  function NavBar() {
             <HStack
               as={'nav'}
               spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
-              {Links.map((link) => (
+              display={{ base: 'none', md: 'flex' }}
+            >
+              {Links.map(link => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </HStack>
@@ -66,7 +67,8 @@ export  function NavBar() {
                 rounded={'full'}
                 variant={'link'}
                 cursor={'pointer'}
-                minW={0}>
+                minW={0}
+              >
                 <Avatar
                   size={'sm'}
                   src={
@@ -87,15 +89,13 @@ export  function NavBar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
-              {Links.map((link) => (
+              {Links.map(link => (
                 <NavLink key={link}>{link}</NavLink>
               ))}
             </Stack>
           </Box>
         ) : null}
       </Box>
-
-      
     </>
   );
 }

@@ -1,8 +1,5 @@
-import { Hero } from "../components/hero"
+import { Hero } from '../components/hero';
 
 export function Home() {
-    return(
-        <Hero/>
-    )
-       
-};
+  return <Hero />;
+}
