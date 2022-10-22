@@ -15,14 +15,6 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
-import {Home} from './pages/Home';
-
-import axios from "axios";
-import { NavBar } from './components/navbar';
-import {About} from './pages/About'
-
-
-
 
 
 function App() {
