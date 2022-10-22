@@ -13,6 +13,10 @@ import {
 
 import axios from "axios";
 
+import NavBar from './components/navbar';
+import Hero from './components/hero';
+
+
 
 function App() {
 
@@ -33,9 +37,10 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
+      
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
+          
           <VStack spacing={8}>
            
             <Routes>
@@ -44,6 +49,7 @@ function App() {
           <Route path="about" element={<AboutPage />} />
           
         </Routes>
+
           </VStack>
         </Grid>
       </Box>
