@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-export function UserLogin() {
+export function UserLogin(props) {
   const [show, setShow] = React.useState(false);
   const togglePaswordVisibility = () => setShow(!show);
 
@@ -51,7 +51,18 @@ export function UserLogin() {
               </Button>
             </InputRightElement>
           </InputGroup>
+          <Button placeSelf="flex-start">Submit</Button>
         </Grid>
+        <Text>
+          Haven't Registered?{'  '}
+          <Text
+            as="u"
+            _hover={{ cursor: 'pointer', color: 'blue' }}
+            onClick={() => props.setLoginVisibility()}
+          >
+            Click here to Register
+          </Text>
+        </Text>
       </Flex>
     </>
   );
