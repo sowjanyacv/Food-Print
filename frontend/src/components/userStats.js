@@ -8,11 +8,8 @@ import {
     useColorModeValue,
   } from '@chakra-ui/react';
   
-  interface StatsCardProps {
-    title: string;
-    stat: string;
-  }
-  function StatsCard(props: StatsCardProps) {
+ 
+  function StatsCard(props) {
     const { title, stat } = props;
     return (
       <Stat
@@ -44,8 +41,8 @@ import {
         </chakra.h1>
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
           <StatsCard title={'You have saved'} stat={'50 tonnes of C02'} />
-          <StatsCard title={'x'} stat={'xxxxx'} />
-          <StatsCard title={'xxxx'} stat={'xxxx'} />
+          <StatsCard title={'Hero Level'} stat={'Acorn'} />
+          <StatsCard title={'Next level in'} stat={'x points'} />
         </SimpleGrid>
       </Box>
     );
