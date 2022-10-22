@@ -10,6 +10,7 @@ const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 require("dotenv").config();
 const {getTextFromImage}= require('./receiptScan/getTextFromImage.js');
+const {calculateScoreAndExpiryDate} = require('./receiptScan/calculateScoreAndExpiryDate.js');
 
 //multer for file upload
 const multer = require("multer");
@@ -41,10 +42,6 @@ app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
-
-app.get("/test", async (req, res) => {
-    return res.status(200).json({ text: "connect test" });
-});
 
 const diskStorage = multer.diskStorage({
     destination: function(req, file, callback) {
@@ -114,7 +111,6 @@ app.post("/users/login", async (req, res) => {
 });
 
 //RECEIPT SCAN 
-
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
@@ -137,21 +133,50 @@ app.post('/receipts/scan', async (req, res) => {
             console.log('uploadedUrl', uploadedUrl);
     
         const response = await ocrSpace(uploadedUrl);
-        const foodText = await getTextFromImage(response.ParsedResults && response.ParsedResults[0].ParsedText);
-            console.log('foodText', foodText);
+        const receiptFoodLog = await getTextFromImage(response.ParsedResults && response.ParsedResults[0].ParsedText);
+            console.log('receiptFoodLog ', receiptFoodLog);
 
-            //calculate carbonFootprintScore
-            //calculate user's points 
+        const {carbonFootprintScore, reminder} = calculateScoreAndExpiryDate(receiptFoodLog);
+        const userId = req.session.userId;
 
+        await pool.query(
+            "INSERT INTO receipts(user_id, food_log, score, reminder) VALUES($1,$2,$3,$4) RETURNING *",
+            [userId, receiptFoodLog, carbonFootprintScore, reminder]
+          );
 
-            //insert foodText in database with date 
-            //insert carbonFootprintScore
-            //calculate user's points in database
+          if(carbonFootprintScore === 'medium' || carbonFootprintScore === 'low'){
+            const increase = carbonFootprintScore === 'low' ? 20 : 10;
 
+            await pool.query(
+                `UPDATE users SET points=points+${increase} WHERE id=$1`,
+                [userId]
+              );
+          }
 
+          return res.status(200).json({receiptFoodLog, carbonFootprintScore, reminder})
         })
     }
 });
+});
+
+//GET users' info for dashboard 
+app.get("/users/info", async (req, res) => {
+
+    const userDetails = await pool.query(
+        `SELECT * FROM users WHERE id=$1`,
+        [userId]
+      );
+
+    const receiptsDetails = await pool.query(
+        `SELECT * FROM receipts WHERE user_id=$1`,
+        [userId]
+      );
+
+      const username = userDetails.rows[0].username;
+      const points = userDetails.rows[0].points;
+      
+
+    
 });
 
 

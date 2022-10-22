@@ -17,7 +17,7 @@ const getTextFromImage = async (str) => {
         let foodList = '';
         foodText?.data?.annotations?.map(elem => {
             if(elem.tag === 'ingredient'){
-                foodList+=` ${elem.annotation}`
+                foodList+=` ${elem.annotation},`
             }
         });
 
