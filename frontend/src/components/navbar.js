@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+
 import {
   Box,
   Flex,
@@ -20,7 +20,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
 const Links = ['Dashboard', 'Projects', 'Team'];
 
-const NavLink = ({ children }: { children: ReactNode }) => (
+const NavLink = ({ children }) => (
   <Link
     px={2}
     py={1}
@@ -95,7 +95,7 @@ export default function NavBar() {
         ) : null}
       </Box>
 
-      <Box p={4}>Main Content Here</Box>
+      
     </>
   );
 }
