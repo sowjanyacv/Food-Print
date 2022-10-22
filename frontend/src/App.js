@@ -15,6 +15,9 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
+import {Home} from './pages/Home';
+import {About} from './pages/About';
+import {NavBar} from './components/navbar';
 
 
 function App() {
