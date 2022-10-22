@@ -5,7 +5,7 @@ id SERIAL PRIMARY KEY,
 username VARCHAR(255) UNIQUE,
 email VARCHAR(255) UNIQUE,
 user_password VARCHAR(255),
-points INT
+points INT DEFAULT 0
 );
 
 CREATE TABLE receipts(

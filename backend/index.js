@@ -3,7 +3,6 @@ const cookieSession = require('cookie-session');
 const path = require("path");
 const cors = require("cors");
 const { pool } = require("./db.js");
-const bodyParser = require("body-parser");
 const cloudinary = require("cloudinary");
 const { ocrSpace } = require('ocr-space-api-wrapper');
 const bcrypt = require('bcryptjs');
@@ -137,10 +136,12 @@ app.post('/receipts/scan', async (req, res) => {
             console.log('receiptFoodLog ', receiptFoodLog);
 
         const {carbonFootprintScore, reminder} = calculateScoreAndExpiryDate(receiptFoodLog);
+        console.log(carbonFootprintScore, reminder);
         const userId = req.session.userId;
+        console.log(userId);
 
         await pool.query(
-            "INSERT INTO receipts(user_id, food_log, score, reminder) VALUES($1,$2,$3,$4) RETURNING *",
+            "INSERT INTO receipts(user_id, food_log, score, reminder) VALUES($1,$2,$3,$4)",
             [userId, receiptFoodLog, carbonFootprintScore, reminder]
           );
 
@@ -162,6 +163,8 @@ app.post('/receipts/scan', async (req, res) => {
 //GET users' info for dashboard 
 app.get("/users/info", async (req, res) => {
 
+  const userId = req.session.userId;
+  
     const userDetails = await pool.query(
         `SELECT * FROM users WHERE id=$1`,
         [userId]
@@ -174,9 +177,8 @@ app.get("/users/info", async (req, res) => {
 
       const username = userDetails.rows[0].username;
       const points = userDetails.rows[0].points;
-      
 
-    
+      return res.json({username, points, receiptsData: receiptsDetails.rows})
 });
 
 

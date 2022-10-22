@@ -1,7 +1,7 @@
-const {fruitsVeggiesList, animalBasedList, highFootprintFoodList} = require('./foodList.js');
+const {fruitsVeggiesList, animalBasedList, highFootprintFoodList, fishMeatList} = require('./foodList.js');
 
 const calculateScoreAndExpiryDate = (foodItems) => {
-    const highCarbonFoodScore = 0;
+    let highCarbonFoodScore = 0;
     let expiryDateFruitsVeggies;
     let expiryDateAnimalBased;
     let expiryDateFishMeat;
@@ -29,7 +29,7 @@ const calculateScoreAndExpiryDate = (foodItems) => {
 
 const halfItems = Math.round(foodItemsArr.length / 2);
 
-if(highCarbonFoodScore > half){
+if(highCarbonFoodScore > halfItems){
     carbonFootprintScore = 'high';
 } else if(highCarbonFoodScore === halfItems){
     carbonFootprintScore = 'medium';
@@ -38,6 +38,8 @@ if(highCarbonFoodScore > half){
 }
 
 const reminderText = `${expiryDateFruitsVeggies}${expiryDateAnimalBased}${expiryDateFishMeat}`;
+
+console.log(carbonFootprintScore, reminderText);
 
 return {carbonFootprintScore: carbonFootprintScore, reminder: reminderText}
 };

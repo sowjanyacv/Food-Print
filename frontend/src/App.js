@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,51 +8,28 @@ import {
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
   theme,
 } from '@chakra-ui/react';
 import {Home} from './pages/Home';
 import {About} from './pages/About';
 import {NavBar} from './components/navbar';
-import axios from "axios";
+//import axios from "axios";
 
 
 function App() {
-  const [file, setFile] = useState('');
 
   // //example of API integration with the backend 
-  // //GET request to /test 
   // useEffect(() => {
-  //   axios.get('/test').then(({data}) => console.log(data.text));
-  // }, [])
+  //   axios.post('/users/register', {username: 'testUser9', email: 'test9@email.com', password: '1234678'})
+  //   .then(({data}) => console.log(data.message)).catch(error => console.log('error', error));
+  // }, []);
 
-  // //example of API integration with the backend 
-  // //POST request to /testPost
-  // //sending username, email and password information to the backend 
-  // useEffect(() => {
-  //   axios.post('/testPost', {username: 'testUser3', email: 'test3@email.com', password: '12346'})
-  //   .then(({data}) => console.log(data.status));
-  // }, [])
-
-const uploadFile = (e) => {
-  e.preventDefault();
-  const uploadedFile = e.target.files[0]
-      console.log('uploadedFile', uploadedFile);
-      const formData = new FormData();
-      formData.append("title", 'receipt');
-      formData.append('file', uploadedFile);
-
-      // for (const value of formData.values()) {
-      //   console.log('formData val', value);
-      // }
-
-      axios.post('/receipts/scan', formData).then(({data}) => console.log('data', data));
-    }
-
+  //   useEffect(() => {
+  //   axios.get('/users/info')
+  //   .then(({data}) => console.log(data)).catch(error => console.log('error', error));
+  // }, []);
 
   return (
     <Router>
@@ -60,13 +37,6 @@ const uploadFile = (e) => {
     <NavBar/>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
-
-        <input
-          type="file"
-          name="file"
-          id="file"
-          onChange={(e) => uploadFile(e)}
-        />
 
           
           <VStack spacing={8}>
