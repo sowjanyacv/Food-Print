@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import { Routes, Route } from "react-router-dom";
 import {
   ChakraProvider,
   Box,
@@ -11,8 +12,10 @@ import {
 } from '@chakra-ui/react';
 
 import axios from "axios";
+
 import NavBar from './components/navbar';
 import Hero from './components/hero';
+
 
 
 function App() {
@@ -39,12 +42,14 @@ function App() {
         <Grid minH="100vh" p={3}>
           
           <VStack spacing={8}>
-            <NavBar></NavBar>
-            <Hero></Hero>
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
            
+            <Routes>
+          <Route index element={<Home />} />
+          <Route path="/" element={<Layout />} />
+          <Route path="about" element={<AboutPage />} />
+          
+        </Routes>
+
           </VStack>
         </Grid>
       </Box>
