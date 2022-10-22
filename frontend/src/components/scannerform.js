@@ -78,7 +78,7 @@ const ScannerForm = () => {
       id="contact"
     >
       <Box
-        borderRadius="lg"
+        borderRadius="sm"
         m={{ base: 5, md: 16, lg: 10 }}
         p={{ base: 5, lg: 16 }}
       >
