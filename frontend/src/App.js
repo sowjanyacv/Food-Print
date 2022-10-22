@@ -5,22 +5,9 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { NavBar } from './components/navbar';
 import { Login } from './pages/Login';
+import { TheFooter } from './components/TheFooter';
 
 function App() {
-  // //example of API integration with the backend
-  // //GET request to /test
-  // useEffect(() => {
-  //   axios.get('/test').then(({data}) => console.log(data.text));
-  // }, [])
-
-  // //example of API integration with the backend
-  // //POST request to /testPost
-  // //sending username, email and password information to the backend
-  // useEffect(() => {
-  //   axios.post('/testPost', {username: 'testUser3', email: 'test3@email.com', password: '12346'})
-  //   .then(({data}) => console.log(data.status));
-  // }, [])
-
   return (
     <Router>
       <ChakraProvider theme={theme}>
@@ -39,6 +26,7 @@ function App() {
               </Switch>
             </VStack>
           </Grid>
+          <TheFooter />
         </Box>
       </ChakraProvider>
     </Router>
