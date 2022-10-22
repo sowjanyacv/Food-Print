@@ -5,7 +5,7 @@ const animalBasedList = 'ham, milk, cheese, cheddar, mozzarella, parmesan, ricot
 const fishMeatList = 'beef, chicken, lamb, cod, salmon, haddock, tuna, prawns, clams, turkey, pork';
 
 const highFootprintFoodList = `açaí berry, dragon fruit, guava, passion fruit, pineapple, bananas, oranges, mangos, tea, coffee, chocolate,
-rice, palm oil, beef, chicken, lamb, cod, salmon, haddock, tuna, prawns, clams, milk, cheese, cheddar, mozzarella, parmesan, ricotta, 
+rice, palm oil, beef, chicken, lamb, cod, salmon, haddock, tuna, prawns, clams, milk, 'spread', cheese, cheddar, mozzarella, parmesan, ricotta, 
 eggs, turkey, pork, ham`
 
 
