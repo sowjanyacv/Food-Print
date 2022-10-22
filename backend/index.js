@@ -9,6 +9,7 @@ const { ocrSpace } = require('ocr-space-api-wrapper');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 require("dotenv").config();
+const {getTextFromImage}= require('./receiptScan/getTextFromImage.js');
 
 //multer for file upload
 const multer = require("multer");
@@ -131,15 +132,25 @@ app.post('/receipts/scan', async (req, res) => {
     
         if (req.file) {
             console.log('req.file.path', req.file.path);
-          cloudinary.uploader.upload(req.file.path, function(result) {
+          cloudinary.uploader.upload(req.file.path, async function(result) {
             const uploadedUrl = result.secure_url;
             console.log('uploadedUrl', uploadedUrl);
     
-        ocrSpace(uploadedUrl).then(response => console.log(response.ParsedResults[0].ParsedText)).catch(error => console.log(error));
+        const response = await ocrSpace(uploadedUrl);
+        const foodText = await getTextFromImage(response.ParsedResults && response.ParsedResults[0].ParsedText);
+            console.log('foodText', foodText);
 
-            
-          });
-        }
+            //calculate carbonFootprintScore
+            //calculate user's points 
+
+
+            //insert foodText in database with date 
+            //insert carbonFootprintScore
+            //calculate user's points in database
+
+
+        })
+    }
 });
 });
 
