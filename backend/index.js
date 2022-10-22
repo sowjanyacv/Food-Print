@@ -4,6 +4,7 @@ const path = require("path");
 const cors = require("cors");
 const { pool } = require("./db.js");
 const bodyParser = require("body-parser");
+const { ocrSpace } = require('ocr-space-api-wrapper');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
 
@@ -85,6 +86,8 @@ app.post("/users/login", async (req, res) => {
         return res.json({ error: error.message });
       }
 });
+
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
