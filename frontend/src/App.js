@@ -10,24 +10,26 @@ import {
   theme,
 } from '@chakra-ui/react';
 import { ColorModeSwitcher } from './ColorModeSwitcher';
-import axios from "axios";
+//import axios from "axios";
 import { Logo } from './Logo';
 
 function App() {
 
+  /*
   //example of API integration with the backend 
   //GET request to /test 
   useEffect(() => {
-    axios.get('/test').then(({data}) => console.log(data.text));
+    axios.get('/test').then(({data}) => console.log(data.text)).catch(error => console.log('error', error))
   }, [])
 
-  //example of API integration with the backend 
+    //example of API integration with the backend 
   //POST request to /testPost
   //sending username, email and password information to the backend 
   useEffect(() => {
     axios.post('/testPost', {username: 'testUser3', email: 'test3@email.com', password: '12346'})
     .then(({data}) => console.log(data.status));
   }, [])
+  */
 
 
   return (
