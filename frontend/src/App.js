@@ -1,12 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
   VStack,
-  Code,
   Grid,
   theme,
 } from '@chakra-ui/react';
@@ -14,8 +11,14 @@ import { Home } from './pages/Home';
 import { About } from './pages/About';
 import { NavBar } from './components/navbar';
 import { Dashboard } from './pages/Dashboard';
+import axios from "axios";
 
 function App() {
+
+  useEffect(() => {
+    axios.post('/users/login', {email: 'test10@email.com', password: '1234678'})
+    .then(({data}) => console.log(data.message));
+  }, [])
 
   return (
     <Router>

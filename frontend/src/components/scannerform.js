@@ -6,6 +6,7 @@ import {
   FormLabel,
   Heading,
   Input,
+  SelectField,
   Stack,
   useColorModeValue,
   VStack,
@@ -13,8 +14,7 @@ import {
 
 import React, { useState } from 'react';
 import FileUploader from './formUpload';
-
-const axios = require('axios').default;
+import axios from "axios";
 
 const confetti = {
   light: {
@@ -33,40 +33,28 @@ const CONFETTI_DARK = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2
 
 const ScannerForm = () => {
   const [name, setName] = useState('');
-  const { selectedFile, setSelectedFile } = useState(null);
+  const [receiptFoodLog, setReceiptFoodLog] = useState('');
+  const [carbonFootprintScore, setCarbonFootprintScore] = useState('');
+  const [reminder, setReminder] = useState('');
 
-  const submitForm = () => {
-    const formData = new FormData();
-    formData.append('name', name);
-    formData.append('file', selectedFile);
+  const uploadFile = async (e) => {
+    e.preventDefault();
 
-    axios
-      .post('UPLOAD_URL', formData)
-      .then(res => {
-        alert('File Upload success');
-      })
-      .catch(err => alert('File Upload Error'));
-  };
+    const uploadedFile = e.target.files[0]
+        console.log('uploadedFile', uploadedFile);
+        const formData = new FormData();
+        formData.append("title", 'receipt');
+        formData.append('file', uploadedFile);
+  
+        const data = await axios.post('/receipts/scan', formData);
+        const {data: {receiptFoodLog, carbonFootprintScore, reminder}} = data;
+        setReceiptFoodLog(receiptFoodLog);
+        setCarbonFootprintScore(carbonFootprintScore);
+        setReminder(reminder);
+
+      }
 
   return (
-    //         <form>
-    //         <input
-    //           type="hidden"
-    //           value={name}
-    //           onChange={(e) => setName(e.target.value)}
-    //         />
-
-    //         <FileUploader
-    //           onFileSelectSuccess={(file) => setSelectedFile(file)}
-    //           onFileSelectError={({ error }) => alert(error)}
-    //         />
-
-    //         <Button onClick={submitForm}>Submit</Button>
-    //       </form>
-
-    //   );
-    // };
-
     <Flex
       bg={useColorModeValue('gray.100', 'gray.900')}
       align="center"
@@ -90,7 +78,7 @@ const ScannerForm = () => {
                 md: '5xl',
               }}
             >
-              Check your Shopping
+              Check your latest grocery shopping
             </Heading>
 
             <Stack
@@ -110,33 +98,33 @@ const ScannerForm = () => {
                 color={useColorModeValue('gray.700', 'whiteAlpha.900')}
                 shadow="base"
               >
-                <VStack spacing={5}>
-                  <FormControl isRequired>
-                    <FormLabel>Upload a picture of your reciept</FormLabel>
+                <VStack spacing={3}>
+                  {!receiptFoodLog && !carbonFootprintScore && !reminder && (
+                     <FormControl isRequired>
+                     <FormLabel>Upload a picture of your latest grocery receipt</FormLabel>
+ 
+                     <Input
+                       type="hidden"
+                       value={name}
+                       onChange={e => setName(e.target.value)}
+                     />
+ 
+                   <input type="file" name="file" id="file" onChange={(e) => uploadFile(e)}/>
+                   </FormControl>
+                  )}
+                   {receiptFoodLog && carbonFootprintScore && (
+                    <section>
 
-                    <Input
-                      type="hidden"
-                      value={name}
-                      onChange={e => setName(e.target.value)}
-                    />
-                    <FileUploader
-                      onFileSelectSuccess={file => setSelectedFile(file)}
-                      onFileSelectError={({ error }) => alert(error)}
-                    />
-                  </FormControl>
+                      <h1>The carbon footprint score of this grocery shopping is {carbonFootprintScore}</h1>
 
-                  <Button
-                    onClick={submitForm}
-                    colorScheme="blue"
-                    bg="blue.400"
-                    color="white"
-                    _hover={{
-                      bg: 'blue.500',
-                    }}
-                    isFullWidth
-                  >
-                    Send Message
-                  </Button>
+                      <p>We will send you notifications to remind you to eat the {receiptFoodLog} you just bought 
+                      before it goes to waste!</p>
+
+                    </section>
+                  
+          
+                  )}
+                 
                 </VStack>
               </Box>
             </Stack>

@@ -3,9 +3,17 @@ const cookieSession = require('cookie-session');
 const path = require("path");
 const cors = require("cors");
 const { pool } = require("./db.js");
-const bodyParser = require("body-parser");
+const cloudinary = require("cloudinary");
+const { ocrSpace } = require('ocr-space-api-wrapper');
 const bcrypt = require('bcryptjs');
 const salt = bcrypt.genSaltSync(10);
+require("dotenv").config();
+const {getTextFromImage}= require('./receiptScan/getTextFromImage.js');
+const {calculateScoreAndExpiryDate} = require('./receiptScan/calculateScoreAndExpiryDate.js');
+
+//multer for file upload
+const multer = require("multer");
+const uidSafe = require("uid-safe");
 
 //const sslRedirect = require('heroku-ssl-redirect').default
 const app = express();
@@ -27,17 +35,32 @@ app.use(
     })
 );
 
-app.use(express.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-app.get("/test", async (req, res) => {
-    return res.status(200).json({ text: "connect test" });
-});
+const diskStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+      callback(null, "./uploads");
+    },
+    filename: function(req, file, callback) {
+      uidSafe(24).then(function(uid) {
+        callback(null, uid + path.extname(file.originalname));
+      });
+    }
+  });
+  
+  const uploader = multer({
+    storage: diskStorage,
+    limits: {
+      fileSize: 2000000
+    }
+  });
 
+//AUTH 
 app.post("/users/register", async (req, res) => {
     const username = req.body.username;
     const email = req.body.email;
@@ -85,6 +108,80 @@ app.post("/users/login", async (req, res) => {
         return res.json({ error: error.message });
       }
 });
+
+//RECEIPT SCAN 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
+});
+app.post('/receipts/scan', async (req, res) => {
+    console.log('req.body', req.file);
+
+    uploader.single("file")(req, res, function(err) {
+        if (err instanceof multer.MulterError) {
+          return res.json({ error: true });
+        } else if (err) {
+          return res.json({ error: true });
+        }
+    
+        if (req.file) {
+            console.log('req.file.path', req.file.path);
+          cloudinary.uploader.upload(req.file.path, async function(result) {
+            const uploadedUrl = result.secure_url;
+            console.log('uploadedUrl', uploadedUrl);
+    
+        const response = await ocrSpace(uploadedUrl);
+        const receiptFoodLog = await getTextFromImage(response.ParsedResults && response.ParsedResults[0].ParsedText);
+            console.log('receiptFoodLog ', receiptFoodLog);
+
+        const {carbonFootprintScore, reminder} = calculateScoreAndExpiryDate(receiptFoodLog);
+        console.log(carbonFootprintScore, reminder);
+        const userId = req.session.userId;
+        console.log(userId);
+
+        await pool.query(
+            "INSERT INTO receipts(user_id, food_log, score, reminder) VALUES($1,$2,$3,$4)",
+            [userId, receiptFoodLog, carbonFootprintScore, reminder]
+          );
+
+          if(carbonFootprintScore === 'medium' || carbonFootprintScore === 'low'){
+            const increase = carbonFootprintScore === 'low' ? 20 : 10;
+
+            await pool.query(
+                `UPDATE users SET points=points+${increase} WHERE id=$1`,
+                [userId]
+              );
+          }
+
+          return res.status(200).json({receiptFoodLog, carbonFootprintScore, reminder})
+        })
+    }
+});
+});
+
+//GET users' info for dashboard 
+app.get("/users/info", async (req, res) => {
+
+  const userId = req.session.userId;
+  
+    const userDetails = await pool.query(
+        `SELECT * FROM users WHERE id=$1`,
+        [userId]
+      );
+
+    const receiptsDetails = await pool.query(
+        `SELECT * FROM receipts WHERE user_id=$1`,
+        [userId]
+      );
+
+      const username = userDetails.rows[0].username;
+      const points = userDetails.rows[0].points;
+
+      return res.json({username, points, receiptsData: receiptsDetails.rows})
+});
+
+
 
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
