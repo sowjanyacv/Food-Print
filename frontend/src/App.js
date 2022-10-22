@@ -1,5 +1,10 @@
 import React, {useEffect} from 'react';
-import { Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 import {
   ChakraProvider,
   Box,
@@ -10,50 +15,59 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
+import {Home} from './pages/Home';
 
 import axios from "axios";
+import { NavBar } from './components/navbar';
+import {About} from './pages/About'
 
-import NavBar from './components/navbar';
-import Hero from './components/hero';
+
 
 
 
 function App() {
 
-  //example of API integration with the backend 
-  //GET request to /test 
-  useEffect(() => {
-    axios.get('/test').then(({data}) => console.log(data.text));
-  }, [])
+  // //example of API integration with the backend 
+  // //GET request to /test 
+  // useEffect(() => {
+  //   axios.get('/test').then(({data}) => console.log(data.text));
+  // }, [])
 
-  //example of API integration with the backend 
-  //POST request to /testPost
-  //sending username, email and password information to the backend 
-  useEffect(() => {
-    axios.post('/testPost', {username: 'testUser3', email: 'test3@email.com', password: '12346'})
-    .then(({data}) => console.log(data.status));
-  }, [])
+  // //example of API integration with the backend 
+  // //POST request to /testPost
+  // //sending username, email and password information to the backend 
+  // useEffect(() => {
+  //   axios.post('/testPost', {username: 'testUser3', email: 'test3@email.com', password: '12346'})
+  //   .then(({data}) => console.log(data.status));
+  // }, [])
 
 
   return (
+    <Router>
     <ChakraProvider theme={theme}>
-      
+    <NavBar/>
       <Box textAlign="center" fontSize="xl">
         <Grid minH="100vh" p={3}>
           
           <VStack spacing={8}>
            
-            <Routes>
-          <Route index element={<Home />} />
-          <Route path="/" element={<Layout />} />
-          <Route path="about" element={<AboutPage />} />
-          
-        </Routes>
+             
+          <Switch>
+
+               <Route path="/home">
+            <Home />
+          </Route>     
+          <Route path="/about">
+            <About />
+          </Route>
+                    
+        </Switch>
 
           </VStack>
         </Grid>
       </Box>
     </ChakraProvider>
+    </Router>
   );
 }
 
