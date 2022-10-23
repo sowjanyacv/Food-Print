@@ -1,101 +1,96 @@
 import {
-  Box,
+  useColorMode,
+  Switch,
   Flex,
-  Avatar,
-  HStack,
-  Link,
-  IconButton,
   Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
+  IconButton,
+  Link,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
-const Links = ['Dashboard', 'Projects', 'Team'];
-
-const NavLink = ({ children }) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}
-  >
-    {children}
-  </Link>
-);
-
-export function NavBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
+export const NavBar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const isDark = colorMode === 'dark';
+  const [display, changeDisplay] = useState('none');
   return (
-    <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          <IconButton
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <HStack spacing={8} alignItems={'center'}>
-            <Box>Logo</Box>
-            <HStack
-              as={'nav'}
-              spacing={4}
-              display={{ base: 'none', md: 'flex' }}
-            >
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </HStack>
-          </HStack>
-          <Flex alignItems={'center'}>
-            <Menu>
-              <MenuButton
-                as={Button}
-                rounded={'full'}
-                variant={'link'}
-                cursor={'pointer'}
-                minW={0}
-              >
-                <Avatar
-                  size={'sm'}
-                  src={
-                    'https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9'
-                  }
-                />
-              </MenuButton>
-              <MenuList>
-                <MenuItem>Link 1</MenuItem>
-                <MenuItem>Link 2</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
+    <Flex>
+      <Flex position="fixed" top="1rem" right="1rem" align="center">
+        {/* Desktop */}
+        <Flex display={['none', 'none', 'flex', 'flex']}>
+          <Link href="/home" passHref>
+            <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+              Home
+            </Button>
+          </Link>
+          <Link href="/about" passHref>
+            <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+              About
+            </Button>
+          </Link>
+
+          <Link href="/dashboard" passHref>
+            <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              Dashboard
+            </Button>
+          </Link>
         </Flex>
 
-        {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} spacing={4}>
-              {Links.map(link => (
-                <NavLink key={link}>{link}</NavLink>
-              ))}
-            </Stack>
-          </Box>
-        ) : null}
-      </Box>
-    </>
+        {/* Mobile */}
+        <IconButton
+          aria-label="Open Menu"
+          size="lg"
+          mr={2}
+          icon={<HamburgerIcon />}
+          onClick={() => changeDisplay('flex')}
+          display={['flex', 'flex', 'none', 'none']}
+        />
+        <Switch color="#green" isChecked={isDark} onChange={toggleColorMode} />
+      </Flex>
+
+      {/* Mobile Content */}
+      <Flex
+        w="100vw"
+        display={display}
+        bgColor="gray.50"
+        zIndex={20}
+        h="100vh"
+        pos="fixed"
+        top="0"
+        left="0"
+        zIndex={20}
+        overflowY="auto"
+        flexDir="column"
+      >
+        <Flex justify="flex-end">
+          <IconButton
+            mt={2}
+            mr={2}
+            aria-label="Open Menu"
+            size="lg"
+            icon={<CloseIcon />}
+            onClick={() => changeDisplay('none')}
+          />
+
+        <Flex flexDir="column" align="center" >
+          <Link href="/" passHref>
+            <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+              Home
+            </Button>
+          </Link>
+
+          <Link href="/about" passHref>
+            <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+              About
+            </Button>
+          </Link>
+
+          <Link href="/contact" passHref>
+            <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              Contact
+            </Button>
+          </Link>
+        </Flex>
+      </Flex>
+    </Flex>
   );
-}
+};
