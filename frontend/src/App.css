@@ -1,0 +1,251 @@
+#root {
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+
+.dashboard-wrapper {
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-container {
+    width:85%;
+    height:80%;
+    display:flex;
+}
+
+.dashboard-scanner {
+    width:55%;
+    margin-right:20px;
+}
+
+.dashboard-scanner h1 {
+    color:#1C7C54;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom:15px;
+    margin-top:-10Px;
+}
+
+.upload-input[type="file"] { 
+    opacity: 0; 
+    z-index: -1; 
+    position: absolute; 
+  }
+
+  .pictureIcon {
+    width:37px;
+  }
+
+  .pictureLabel {
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+    border: 1px dashed black;
+    padding: 10px 0;
+  }
+
+  .pictureLabel p {
+    font-size:10px;
+    font-weight:bold;
+    margin-top:5px;
+  }
+
+  .receiptForm {
+    width:90%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+  }
+
+
+
+  .results-wrapper {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+  }
+
+  .carbonFootprint-results {
+    display: flex;
+    align-items: center;
+    border: 1px solid #1C7C54;
+    width: 370px;
+    font-size: 16px;
+    font-weight: bold;
+    height: 100Px;
+    margin-top:15px;
+  }
+
+  .carbonFootprintScore-text {
+    background-color: #B8D8BA;
+    height: 100%;
+    width:50%;
+    display: flex;
+    align-items: center;
+
+  }
+
+  .carbonFootprintScore-text p {
+    line-height:1.1;
+  }
+
+  .carbonFootprintScore{
+    height: 100%;
+    width:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  p.foodDetails-results {
+    font-size: 13px;
+    line-height:normal;
+    font-style: italic;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+  }
+
+ .text-container-results-details {
+    width:80%;
+    line-height:1;
+  }
+
+  p.results-text-details {
+    font-size: 16px;
+    display:inline;
+  }
+
+  .scores-reward-wrapper {
+    width:100%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scores-reward-container {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:15px;
+  }
+
+
+
+  .pointsReward {
+    align-self: flex-end;
+    font-size:16px;
+  }
+
+  .reward-bar {
+    margin-top:15px;
+  }
+
+  .loadingScan {
+    margin-top:20px;
+  }
+
+  .cta-results {
+    display:flex;
+  }
+
+  .cta-results button {
+    margin-right: 10Px;
+  }
+
+  /* //dashboard user */
+
+  .dashboard-user {
+    width:45%;
+    background-color:#B8D8BA;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+  .user-info-container {
+    display: flex;
+    width: 80%;
+    height:100px;
+    justify-content: space-evenly;
+    margin-top:20px;
+  }
+
+  .user-info-container h1 {
+    font-weight:bold;
+  }
+
+  .user-info-container h1, h2 {
+    color:#1C7C54;
+  }
+
+  .user-info-container img{
+    object-fit: contain;
+  }
+
+  /* //reminders on dashbaord */
+
+  .reminders-section {
+    margin-top:20Px;
+  }
+
+  .reminder-details-text {
+    line-height:0.8;
+    text-align:left;
+  }
+
+  .reminder-wrapper {
+    background-color:white;
+    padding: 20px 15px;
+    display:flex;
+    margin-top:20px;
+    border-radius:6px;
+  }
+
+
+  .exclamationMark-container{
+    background-color:#B8D8BA;
+    border-radius:12px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:45px;
+    height:45px;
+    margin-right:15Px;
+  }
+
+  .reminder-details {
+    display:flex;
+    align-items:center;
+  }
+
+  .reminder-details p {
+    font-size: 16px;
+  }
+
+  .reminder-details span {
+    font-size: 10px;
+  }
+
+  img.arrowRight {
+    width: 20px;
+    margin-left:10Px;
+  }
+
+
+
