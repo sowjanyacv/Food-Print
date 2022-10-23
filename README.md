@@ -54,7 +54,7 @@ Audrey (developer), Sowjanya(developer), Kate (developer), Nadia (designer), Ade
 
 ## Screenshots 
 
-!(home.png)
-!(dashboard-1.png)
-!(dashboard-2.png)
-!(dashboard-3.png)
+!['home'](home.png)
+!['dashboard'](dashboard-1.png)
+!['dashboard'](dashboard-2.png)
+!['dashboard'](dashboard-3.png)
