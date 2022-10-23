@@ -3,12 +3,13 @@ import {
   Heading,
   Input,
   Text,
-  Grid,
+  Image,
   InputGroup,
   InputRightElement,
   Button,
 } from '@chakra-ui/react';
 import React from 'react';
+import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 export function UserLogin(props) {
   const [show, setShow] = React.useState(false);
@@ -16,53 +17,77 @@ export function UserLogin(props) {
 
   return (
     <>
-      <Flex
-        flexDir="column"
-        margin="0"
-        width="100%"
-        height="100%"
-        alignItems="center"
-        px={{ base: '20px', md: '36px' }}
-      >
-        <Heading> Login </Heading>
-        <Grid
-          width="80%"
-          templateColumns="10% 90%"
-          rowGap={{ base: '20px', md: '30px' }}
-          px={{ base: '20px', md: '36px' }}
-          py={{ base: '20px', md: '36px' }}
-          textAlign="start"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Text>Email: </Text>
-          <Input placeholder="examplename@example.com" />
+      <Flex width="100vw" justifyContent="space-evenly" paddingTop="40px">
+        <Flex direction="column" alignItems="flex-start" width="453px">
+          <Heading color="#1c7c54"> Login </Heading>
+          <Text paddingTop="20px" paddingBottom="32px" fontSize="20px">
+            Scan grocery reciepts for your carbon footprint score.
+          </Text>
+          <Text paddingBottom="16px">Email Address: </Text>
+          <Input
+            background="#fcfefa"
+            borderRadius="none"
+            placeholder="example@hotmail.com"
+          />
 
-          <Text>Password: </Text>
+          <Text py="16px">Password: </Text>
           <InputGroup size="md">
             <Input
+              background="#fcfefa"
+              borderRadius="none"
               pr="4.5rem"
               type={show ? 'text' : 'password'}
               placeholder="Enter password"
             />
             <InputRightElement width="4.5rem">
-              <Button h="1.75rem" size="sm" onClick={togglePaswordVisibility}>
-                {show ? 'Hide' : 'Show'}
+              <Button
+                h="1.75rem"
+                size="sm"
+                onClick={togglePaswordVisibility}
+                variant="ghost"
+                color="#1c7c54"
+                _active
+                _hover={{ bg: '#fcfefa' }}
+              >
+                {show ? <ViewIcon /> : <ViewOffIcon />}
               </Button>
             </InputRightElement>
           </InputGroup>
-          <Button placeSelf="flex-start">Submit</Button>
-        </Grid>
-        <Text>
-          Haven't Registered?{'  '}
-          <Text
-            as="u"
-            _hover={{ cursor: 'pointer', color: 'blue' }}
-            onClick={() => props.setLoginVisibility()}
+          <Button
+            placeSelf="center"
+            marginTop="36px"
+            p="12px 16px"
+            background="#1c7c54"
+            color="#fcfefa"
+            _hover
+            _active={{ bg: '#1c7c54' }}
           >
-            Click here to Register
+            Login
+          </Button>
+          <Text
+            placeSelf="center"
+            textAlign="center"
+            fontSize="12px"
+            marginTop="16px"
+          >
+            Don't have an account?{'  '}
+            <Text
+              as="b"
+              color="#1c7c54"
+              cursor="pointer"
+              onClick={() => props.setLoginVisibility()}
+            >
+              Click here to Register
+            </Text>
           </Text>
-        </Text>
+        </Flex>
+        <Image
+          width="440px"
+          height="550px"
+          borderRadius="40px"
+          src="https://images.unsplash.com/photo-1584473457406-6240486418e9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80"
+          alt="login image"
+        />
       </Flex>
     </>
   );
