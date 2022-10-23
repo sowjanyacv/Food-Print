@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import {
   useColorMode,
   Switch,
@@ -23,7 +22,6 @@ export const NavBar = () => {
               Home
             </Button>
           </Link>
-
           <Link href="/about" passHref>
             <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
               About
@@ -72,7 +70,6 @@ export const NavBar = () => {
             icon={<CloseIcon />}
             onClick={() => changeDisplay('none')}
           />
-        </Flex>
 
         <Flex flexDir="column" align="center" >
           <Link href="/" passHref>
