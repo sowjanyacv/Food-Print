@@ -38,7 +38,7 @@ export function UserLogin(props) {
         <Flex direction="column" alignItems="flex-start" width="453px">
           <Heading color="#1c7c54"> Login </Heading>
           <Text paddingTop="20px" paddingBottom="32px" fontSize="20px" textAlign="left">
-            Scan grocery reciepts for your carbon footprint score.
+            Scan grocery receipts for your carbon footprint score.
           </Text>
           <Text paddingBottom="16px">Email Address: </Text>
           <Input
@@ -47,6 +47,7 @@ export function UserLogin(props) {
             placeholder="example@hotmail.com"
             type="text"
             onChange={e => setEmail(e.target.value)}
+            autoComplete="off"
           />
 
           <Text py="16px">Password: </Text>

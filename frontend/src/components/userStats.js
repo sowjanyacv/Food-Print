@@ -33,12 +33,13 @@ function StatsCard(props) {
   );
 }
 
-export default function UserStatistics() {
+export default function UserStatistics({pointsIncrease}) {
+  const co2Increase = pointsIncrease === 20 ? 0.8 : pointsIncrease === 0 ? 0.5 : 0;
   return (
     <Box maxW="7xl" mx={'auto'} pt={5} px={{ base: 2, sm: 12, md: 17 }}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, lg: 8 }}>
-        <StatsCard title={'Your points'} stat={30} />
-        <StatsCard title={'You have saved'} stat={50} detail={"tonnes of CO2"} />
+        <StatsCard title={'Your points'} stat={30 + pointsIncrease} />
+        <StatsCard title={'You have saved'} stat={50 + co2Increase} detail={"tonnes of CO2"} />
       </SimpleGrid>
     </Box>
   );

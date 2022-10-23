@@ -1,10 +1,8 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   ChakraProvider,
   Box,
-  VStack,
-  Grid,
   theme,
 } from '@chakra-ui/react';
 import { Onboarding } from './pages/Onboarding';
@@ -12,7 +10,7 @@ import { NavBar } from './components/navbar';
 import { Dashboard } from './pages/Dashboard';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
-import axios from "axios";
+import {Receipts} from './pages/Receipts';
 import './App.css';
 
 function App() {
@@ -38,6 +36,7 @@ function App() {
                 <Route path="/dashboard">
                   <Dashboard />
                 </Route>
+                <Route path="/receipts"> <Receipts /></Route>
 
 
               </Switch>

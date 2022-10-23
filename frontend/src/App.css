@@ -287,5 +287,58 @@
     align-items:center;
   }
 
+  .logDay {
+    font-weight:bold;
+    color:#1C7C54;
+  }
+
+  .log-item-closed {
+border-top: 1px solid grey;
+height:70px;
+cursor:pointer;
+display:flex;
+align-items:center;
+  }
+
+  .log-item-open, .log-item-closed{
+    padding-left:50px;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-size: 20px;
+  }
+
+  .log-item-open {
+    position: relative;
+    border-left: 6px solid black;
+  }
+
+  .log-item-open ul {
+    line-height:1;
+    margin-top:10px;
+    margin-bottom:10Px;
+  }
+
+  .log-item-closed:hover {
+    background-color: #ededed;
+    transition: all 0.3s;
+  }
+
+  .logs {
+    min-height:100vh;
+    background-color:white;
+    width:60%;
+    text-align:left;
+  }
+
+  .logDate {
+    border-radius: 5px;
+    background-color:#1C7C54;
+    color:white;
+    padding:5px 10px;
+    position:absolute;
+    right:20px;
+
+  }
+
 
 

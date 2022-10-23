@@ -9,10 +9,19 @@ import '../App.css';
 
 export function Dashboard() {
     const [status, setStatus] = useState('Upload a picture of your latest grocery receipt');
+    const [pointsIncrease, setpointIncrease] = useState(0);
 
     const getIsResults = (status) => {
         setStatus(status)
     }
+
+
+const getPointIncrease = (increase) => {
+    setpointIncrease(increase)
+
+}
+
+
     return (
         <section className="dashboard-wrapper">
             <section className="dashboard-container">
@@ -22,7 +31,7 @@ export function Dashboard() {
                     <Heading as='h3' size='md' style={{ textAlign: 'left' }}>
                         {status}
                     </Heading>
-                    <ScannerForm getIsResults={getIsResults} />
+                    <ScannerForm getIsResults={getIsResults} getPointIncrease={getPointIncrease} />
                 </section>
 
                 <section className="dashboard-user">
@@ -38,7 +47,7 @@ export function Dashboard() {
                     </div>
 
                     <div>
-                        <UserStatistics />
+                        <UserStatistics pointsIncrease={pointsIncrease}/>
                     </div>
 
 

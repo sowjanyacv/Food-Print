@@ -12,7 +12,7 @@ import nextRewardBar from './nextRewardBar.png';
 import axios from "axios";
 
 
-const ScannerForm = ({getIsResults}) => {
+const ScannerForm = ({getIsResults, getPointIncrease}) => {
   const [file, setFile] = useState('');
   const [receiptFoodLog, setReceiptFoodLog] = useState('');
   const [carbonFootprintScore, setCarbonFootprintScore] = useState('');
@@ -37,6 +37,9 @@ const ScannerForm = ({getIsResults}) => {
     setReceiptFoodLog(receiptFoodLog.replace(/,\s*$/, ""));
     setCarbonFootprintScore(carbonFootprintScore);
     setReminder(reminder);
+    const increase = carbonFootprintScore === 'low' ? 20 : carbonFootprintScore === 'medium' ? 10 : 0;
+    
+    getPointIncrease(increase);
   }
 
 
@@ -96,7 +99,7 @@ const ScannerForm = ({getIsResults}) => {
             </div>
           </section>
 
-          <p className="foodDetails-results">Fresh food items scanned in the receipt: {receiptFoodLog} </p>
+          <p className="foodDetails-results">Food items scanned in the receipt: {receiptFoodLog} </p>
 
           <div className="text-container-results-details">
           {(carbonFootprintScore === 'medium' || carbonFootprintScore === 'low') && (
