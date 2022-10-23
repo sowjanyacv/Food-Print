@@ -1,8 +1,8 @@
-import { UserLogin } from '../components/userLogin';
+import { UserRegistration } from '../components/userRegistration';
 import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-export function Login(props) {
+export function Register(props) {
 
   return (
     <>
@@ -11,10 +11,9 @@ export function Login(props) {
         height="100vh"
         color="#1b1212"
         fontFamily="Verdana"
-        style={{marginTop: 0}}
       >
-   
-          <UserLogin  isUserLogged={props.getIsUserLogged} />
+          <UserRegistration isUserLogged={props.getIsUserLogged} />
+
       </Box>
     </>
   );

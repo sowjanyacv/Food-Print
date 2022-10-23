@@ -92,10 +92,11 @@ app.post("/users/login", async (req, res) => {
         if(userInfo && userInfo?.rows?.length > 0){
             const passwordDB = userInfo.rows[0].user_password;
             const passwordMatched = await bcrypt.compareSync(password, passwordDB);
+            console.log('userInfo.rows[0].username', userInfo.rows[0].username);
 
             if(passwordMatched){
                 req.session.userId = userInfo.rows[0]?.id;
-                return res.status(200).json({message: "login success"})
+                return res.status(200).json({username: userInfo.rows[0].username})
             } else {
                 return res.json({ error: 'incorrect password' });
             }
@@ -116,7 +117,7 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 app.post('/receipts/scan', async (req, res) => {
-    console.log('req.body', req.file);
+    console.log('req.file', req.file);
 
     uploader.single("file")(req, res, function(err) {
         if (err instanceof multer.MulterError) {
@@ -181,6 +182,20 @@ app.get("/users/info", async (req, res) => {
       return res.json({username, points, receiptsData: receiptsDetails.rows})
 });
 
+app.get("/users/verify", (req, res) => {
+  if (req.session.userId) {
+      return res.json("logged");
+  } else {
+      return res.json("notlogged");
+  }
+});
+
+
+app.get("/logout", (req, res) => {
+  console.log('LOGOUT');
+  req.session.userId = null;
+  res.status(200).json({status: 'ok'})
+});
 
 
 app.get("*", (req, res) => {

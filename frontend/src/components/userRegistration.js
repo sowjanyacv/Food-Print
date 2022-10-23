@@ -10,14 +10,31 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
+import { Link, useHistory } from 'react-router-dom';
+import axios from "axios";
 
 export function UserRegistration(props) {
   const [show, setShow] = React.useState(false);
   const togglePaswordVisibility = () => setShow(!show);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('');
+  const history = useHistory();
+
+  const registerUser = () => {
+    console.log('username', username, 'email', email, 'password', password);
+    axios.post('/users/register', {username, email, password})
+    .then(({data}) =>{
+      console.log('data', data)
+      localStorage.setItem('user', username);
+      props.isUserLogged(true);
+      history.push('/about')
+    });
+}
 
   return (
     <>
-      <Flex justifyContent="center" width="100%" paddingTop="40px">
+      <Flex justifyContent="center" width="100%" paddingTop="120px">
         <Flex direction="column" width="932px">
           <Heading color="#1c7c54"> Create an account </Heading>
           <Text paddingTop="20px" paddingBottom="32px" fontSize="20px">
@@ -29,7 +46,9 @@ export function UserRegistration(props) {
               <Input
                 background="#fcfefa"
                 borderRadius="none"
-                placeholder="Name"
+                placeholder="Username"
+                type="text"
+                onChange={e => setUsername(e.target.value)}
               />
             </Flex>
             <Flex direction="column">
@@ -38,6 +57,8 @@ export function UserRegistration(props) {
                 background="#fcfefa"
                 borderRadius="none"
                 placeholder="example@hotmail.com"
+                type="text"
+                onChange={e => setEmail(e.target.value)}
               />
             </Flex>
             <Flex direction="column">
@@ -49,6 +70,7 @@ export function UserRegistration(props) {
                   pr="4.5rem"
                   type={show ? 'text' : 'password'}
                   placeholder="Enter password"
+                  onChange={e => setPassword(e.target.value)}
                 />
                 <InputRightElement width="4.5rem">
                   <Button
@@ -99,6 +121,7 @@ export function UserRegistration(props) {
             color="#fcfefa"
             _hover
             _active={{ bg: '#1c7c54' }}
+            onClick={registerUser}
           >
             Create Account
           </Button>
@@ -109,14 +132,9 @@ export function UserRegistration(props) {
             marginTop="16px"
           >
             Already have an account?{'  '}
-            <Text
-              as="b"
-              color="#1c7c54"
-              cursor="pointer"
-              onClick={() => props.setLoginVisibility()}
-            >
-              Login here
-            </Text>
+
+            <Link to="/login" style={{color: '#1c7c54'}}>Login here</Link>
+          
           </Text>
         </Flex>
       </Flex>

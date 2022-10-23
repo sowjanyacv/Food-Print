@@ -1,21 +1,13 @@
 import {
-  Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
-  SelectField,
-  Stack,
   useColorModeValue,
-  VStack,
   CircularProgress
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import pictureIcon from './picture.png';
 import nextRewardBar from './nextRewardBar.png';
-//import { ReactComponent as NextRewardBar } from './nextRewardBar.svg';
 
 import axios from "axios";
 
@@ -27,23 +19,20 @@ const ScannerForm = ({getIsResults}) => {
   const [reminder, setReminder] = useState('');
   const [scanLoading, setScanLoading] = useState(false);
 
-
-  const uploadFile = async (e) => {
+  const sendFileForScan = async (e) => {
     e.preventDefault();
-    setFile(e.target.files[0])
-  }
-
-  const sendFileForScan = async () => {
     if(!file) return;
 
     setScanLoading(true);
+    getIsResults('Scanning...');
+    //console.log('uploadedFile', file);
     const formData = new FormData();
     formData.append("title", 'receipt');
     formData.append('file', file);
 
     const data = await axios.post('/receipts/scan', formData);
     setScanLoading(false);
-    getIsResults(true);
+    getIsResults('Result');
     const { data: { receiptFoodLog, carbonFootprintScore, reminder } } = data;
     setReceiptFoodLog(receiptFoodLog.replace(/,\s*$/, ""));
     setCarbonFootprintScore(carbonFootprintScore);
@@ -72,10 +61,9 @@ const ScannerForm = ({getIsResults}) => {
         <>
           <Flex
             bg={'#B8D8BA'}
-            borderRadius="lg"
             justify="center"
             align="center"
-            w='100%'
+            w='80%'
             mt={5}
             h={200}
             shadow="base"
@@ -85,7 +73,7 @@ const ScannerForm = ({getIsResults}) => {
               <label for="file" className="pictureLabel" >
                 <img src={pictureIcon} alt="pictureIcon" className="pictureIcon" />
                 <p>Upload your receipt </p>
-                <input type="file" name="file" id="file" onChange={(e) => uploadFile(e)} className="upload-input" />
+                <input type="file" name="file" id="file" onChange={(e) => setFile(e.target.files[0])} className="upload-input" />
               </label>
 
               <Button onClick={sendFileForScan} bg="#1C7C54" size='lg' color="white" mt={5} style={{fontSize: '14px'}} disabled={!file}> Submit </Button>

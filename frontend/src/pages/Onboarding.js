@@ -1,7 +1,10 @@
-import { Flex, Heading, Text, Button } from '@chakra-ui/react';
+import { Flex, Button, Heading } from '@chakra-ui/react';
 import { OnboardingCards } from '../components/onboardingCards';
+import { Link } from 'react-router-dom';
 
 export function Onboarding() {
+  const getStartedRoute = localStorage.getItem('user') ? '/dashboard' : '/register';
+
   const data = [
     {
       image:
@@ -31,25 +34,27 @@ export function Onboarding() {
         flexDir="column"
         width="100vw"
         height="100vh"
-        paddingTop="40px"
-        background="#b8d8ba"
+        paddingTop="110px"
+        background="#CBDBCC"
         color="#1b1212"
         fontFamily="Verdana"
       >
-        <Heading color="#1c7c54" marginLeft="115px">
-          Hello, Jasmine
-        </Heading>
-        <Text
+        {localStorage.getItem('user') && (
+          <Heading color="#1c7c54" textAlign="center" paddingBottom="20px">
+            Hello, {localStorage.getItem('user')}
+          </Heading>
+        )}
+
+        {/* <Text
           marginLeft="115px"
           paddingTop="20px"
           paddingBottom="32px"
           fontSize="20px"
         >
           Let's get started.
-        </Text>
+        </Text> */}
         <Flex
           paddingTop="42px"
-          marginTop="40px"
           height="320px"
           width="100%"
           backgroundColor="#1c7c54"
@@ -59,17 +64,20 @@ export function Onboarding() {
             <OnboardingCards data={value} />
           ))}
         </Flex>
-        <Button
-          placeSelf="center"
-          marginTop="155px"
-          p="12px 16px"
-          background="#1c7c54"
-          color="#fcfefa"
-          _hover
-          _active={{ bg: '#1c7c54' }}
-        >
-          Get Started
-        </Button>
+
+        <Link to={getStartedRoute}>
+          <Button
+            placeSelf="center"
+            marginTop="145px"
+            p="12px 16px"
+            background="#1c7c54"
+            color="#fcfefa"
+            _hover
+            _active={{ bg: '#1c7c54' }}
+          >
+            Get Started
+          </Button>
+        </Link>
       </Flex>
     </>
   );

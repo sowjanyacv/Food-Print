@@ -8,12 +8,11 @@ import goldBadge from './goldBadge.png';
 import '../App.css';
 
 export function Dashboard() {
-    const [isResults, setIsResults] = useState(false);
+    const [status, setStatus] = useState('Upload a picture of your latest grocery receipt');
 
-    const getIsResults = (bool) => {
-        setIsResults(bool)
+    const getIsResults = (status) => {
+        setStatus(status)
     }
-
     return (
         <section className="dashboard-wrapper">
             <section className="dashboard-container">
@@ -21,7 +20,7 @@ export function Dashboard() {
                 <section className="dashboard-scanner">
                     <h1> Dashboard </h1>
                     <Heading as='h3' size='md' style={{ textAlign: 'left' }}>
-                        {!isResults ? 'Upload a picture of your latest grocery receipt' : 'Result'}
+                        {status}
                     </Heading>
                     <ScannerForm getIsResults={getIsResults} />
                 </section>

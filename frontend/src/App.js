@@ -7,40 +7,40 @@ import {
   Grid,
   theme,
 } from '@chakra-ui/react';
-import { Home } from './pages/Home';
-import { About } from './pages/About';
+import { Onboarding } from './pages/Onboarding';
 import { NavBar } from './components/navbar';
 import { Dashboard } from './pages/Dashboard';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
 import axios from "axios";
 import './App.css';
 
 function App() {
+  const [isUserLogged, setIsUserLogged] = React.useState(false);
 
-  useEffect(() => {
-    axios.post('/users/login', {email: 'test10@email.com', password: '1234678'})
-    .then(({data}) => console.log(data.message));
-  }, [])
+  const getIsUserLogged = (status) => {
+    console.log('status', status);
+    setIsUserLogged(status)
+  }
 
   return (
     <Router>
       <ChakraProvider theme={theme}>
-        <NavBar />
+        <NavBar isUserLogged={isUserLogged} />
         <Box textAlign="center" fontSize="xl">
-          <Grid minH="100vh" p={3}>
-            <VStack spacing={8}>
+  
               <Switch>
-                <Route path="/home">
-                  <Home />
-                </Route>
                 <Route path="/about">
-                  <About />
+                  <Onboarding />
                   </Route>
+                <Route path="/login"><Login getIsUserLogged={getIsUserLogged} /></Route>
+                <Route path="/register"><Register getIsUserLogged={getIsUserLogged} /></Route>
                 <Route path="/dashboard">
                   <Dashboard />
                 </Route>
+
+
               </Switch>
-            </VStack>
-          </Grid>
         </Box>
       </ChakraProvider>
     </Router>
