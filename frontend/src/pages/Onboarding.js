@@ -35,7 +35,7 @@ export function Onboarding() {
         width="100vw"
         height="100vh"
         paddingTop="110px"
-        background="#b8d8ba"
+        background="#CBDBCC"
         color="#1b1212"
         fontFamily="Verdana"
       >

@@ -1,21 +1,13 @@
 import {
-  Box,
   Button,
   Flex,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
-  SelectField,
-  Stack,
   useColorModeValue,
-  VStack,
   CircularProgress
 } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import pictureIcon from './picture.png';
 import nextRewardBar from './nextRewardBar.png';
-//import { ReactComponent as NextRewardBar } from './nextRewardBar.svg';
 
 import axios from "axios";
 
@@ -27,15 +19,13 @@ const ScannerForm = ({getIsResults}) => {
   const [reminder, setReminder] = useState('');
   const [scanLoading, setScanLoading] = useState(false);
 
-
-
   const sendFileForScan = async (e) => {
     e.preventDefault();
     if(!file) return;
 
     setScanLoading(true);
     getIsResults('Scanning...');
-    console.log('uploadedFile', file);
+    //console.log('uploadedFile', file);
     const formData = new FormData();
     formData.append("title", 'receipt');
     formData.append('file', file);

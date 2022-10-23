@@ -9,6 +9,10 @@
   cursor:pointer;
 }
 
+.navLogo {
+  height: 35px;
+}
+
 .dashboard-wrapper {
     width:100%;
     display:flex;
@@ -275,7 +279,12 @@
 
   .avatar-navbar {
     width: 50px;
-    object-fit: contain;
+    display:inline-block;
+  }
+
+  .menu-nav {
+    display:flex;
+    align-items:center;
   }
 
 
