@@ -12,6 +12,8 @@ FoodPrint is a web app that tackles food consumption's impact on carbon footprin
 
 We use an OCR API to detect text in the receipt image and take into account the seasonality and type of the food items to calculate their carbon footprint.
 
+We built our app with the security of our users in mind: we use cookie session for authentication and hash users' passwords with bycryptjs before storing them in the database. 
+
 ## Future improvements
 - Implementing reminders via mobile messaging (SMS, WhatsApp, Telegram)
 - Connecting users to local food producers with search and messaging features
@@ -52,7 +54,7 @@ Audrey (developer), Sowjanya(developer), Kate (developer), Nadia (designer), Ade
 
 ## Screenshots 
 
-![home.png]
-![dashboard-1.png]
-![dashboard-2.png]
-![dashboard-3.png]
+!(home.png)
+!(dashboard-1.png)
+!(dashboard-2.png)
+!(dashboard-3.png)
