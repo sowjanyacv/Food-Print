@@ -1,13 +1,10 @@
 import {
-  useColorMode,
-  Switch,
   Flex,
-  Button,
   IconButton,
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { HamburgerIcon} from '@chakra-ui/icons';
 import avatar from '../pages/avatar.png';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, NavLink } from 'react-router-dom';
 import React from 'react';
 import axios from "axios";
 
@@ -17,11 +14,10 @@ export const NavBar = (props) => {
   const history = useHistory();
 
   React.useEffect(() => {
- setLoggedIn(localStorage.getItem('user'));
+    setLoggedIn(localStorage.getItem('user'));
   }, [props.isUserLogged])
 
   const logout = () => {
-    console.log('LOGOUT')
     axios('/logout').then(() => {
       console.log('success logout');
       localStorage.removeItem('user');
@@ -31,59 +27,57 @@ export const NavBar = (props) => {
   }
 
   return (
-    <Flex>
-      <Flex position="fixed" top="1rem" right="1rem" align="center">
+      <Flex position="fixed" top="1rem" right="1rem" align="center" justify="flex-end" height="80px">
         {/* Desktop */}
-        <Flex display={['none', 'none', 'flex', 'flex']}>
-          <Link to="/about">
-            <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+
+          <NavLink to="/about" style={isActive => ({
+            fontWeight: isActive ? "bold" : "normal"
+          })} className="navLinks">
               About
-            </Button>
-          </Link>
+          </NavLink>
 
 
           {!loggedIn && (
             <>
-              <Link to="/login">
-                <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              <NavLink to="/login" style={isActive => ({
+            fontWeight: isActive ? "bold" : "normal"
+          })} className="navLinks">
                   Login
-                </Button>
-              </Link>
+              </NavLink>
 
-              <Link to="/register">
-                <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              <NavLink to="/register" style={isActive => ({
+            fontWeight: isActive ? "bold" : "normal"
+          })} className="navLinks">
                   Create account
-                </Button>
-              </Link>
+              </NavLink>
             </>
           )}
 
 
           {loggedIn && (
             <>
-              <Link to="/dashboard">
-                <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              <NavLink to="/dashboard" style={isActive => ({
+            fontWeight: isActive ? "bold" : "normal"
+          })} className="navLinks">
                   Dashboard
-                </Button>
-              </Link>
+              </NavLink>
 
 
-              <Link to="/receipts">
-                <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
+              <NavLink to="/receipts" style={isActive => ({
+            fontWeight: isActive ? "bold" : "normal"
+          })} className="navLinks">
                   Receipts
-                </Button>
-              </Link>
+              </NavLink>
 
-              <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%" onClick={logout}>
+              <span onClick={logout} className="navLinks" >
                 Logout
-              </Button>
+              </span>
 
               <img src={avatar} alt="avatar" className="avatar-navbar" />
             </>
           )}
 
 
-        </Flex>
 
         {/* Mobile */}
         <IconButton
@@ -97,7 +91,7 @@ export const NavBar = (props) => {
         {/* <Switch color="#green" isChecked={isDark} onChange={toggleColorMode} /> */}
       </Flex>
 
-      {/* Mobile Content */}
+      /* Mobile Content
       <Flex
         w="100vw"
         display={display}
@@ -146,7 +140,6 @@ export const NavBar = (props) => {
             </Link>
           </Flex>
         </Flex>
-      </Flex>
-    </Flex>
+      </Flex>*/
   );
 };
