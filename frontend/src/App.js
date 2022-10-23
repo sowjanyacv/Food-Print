@@ -12,6 +12,7 @@ import { About } from './pages/About';
 import { NavBar } from './components/navbar';
 import { Dashboard } from './pages/Dashboard';
 import axios from "axios";
+import './App.css';
 
 function App() {
 

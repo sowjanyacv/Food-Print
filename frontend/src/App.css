@@ -1,0 +1,164 @@
+#root {
+    font-family: Verdana, Geneva, sans-serif; 
+}
+
+
+.dashboard-wrapper {
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard-container {
+    width:95%;
+    height:80%;
+    display:flex;
+}
+
+.dashboard-scanner {
+    width:60%;
+    margin-right:20px;
+}
+
+.dashboard-scanner h1 {
+    color:#1C7C54;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom:15px;
+}
+
+.dashboard-user {
+    width:40%;
+}
+
+.upload-input[type="file"] { 
+    opacity: 0; 
+    z-index: -1; 
+    position: absolute; 
+  }
+
+  .pictureIcon {
+    width:45px;
+  }
+
+  .pictureLabel {
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+  }
+
+  .pictureLabel p {
+    font-size:14px;
+    font-weight:bold;
+    margin-top:5px;
+  }
+
+  .receiptForm {
+    border: 1px dashed black;
+    width:90%;
+    height:45%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+
+
+  .results-wrapper {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    flex-direction:column;
+  }
+
+  .carbonFootprint-results {
+    display: flex;
+    align-items: center;
+    border: 1px solid #1C7C54;
+    width: 40%;
+    font-size: 16px;
+    font-weight: bold;
+    height: 100Px;
+    margin-top:15px;
+  }
+
+  .carbonFootprintScore-text {
+    background-color: #B8D8BA;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .carbonFootprintScore{
+    border-left: 1px solid #1C7C54;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10Px;
+  }
+
+  p.foodDetails-results {
+    font-size: 13px;
+    line-height:normal;
+    font-style: italic;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+  }
+
+ .text-container-results-details {
+    width:80%;
+  }
+
+  p.results-text-details {
+    font-size: 16px;
+    line-height:1.2;
+    display:inline;
+  }
+
+  .scores-reward-wrapper {
+    width:100%;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .scores-reward-container {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top:15px;
+  }
+
+
+
+  .pointsReward {
+    align-self: flex-end;
+    font-size:16px;
+  }
+
+  .reward-bar {
+    margin-top:15px;
+  }
+
+  .loadingScan {
+    margin-top:20px;
+  }
+
+  .cta-results {
+    display:flex;
+  }
+
+  .cta-results button {
+    margin-right: 10Px;
+  }
