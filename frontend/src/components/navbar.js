@@ -1,103 +1,32 @@
-import {
-  useColorMode,
-  Switch,
-  Flex,
-  Button,
-  IconButton,
-  Link,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import React from 'react';
+import { Image, Flex, Link } from '@chakra-ui/react';
 
 export const NavBar = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-  const isDark = colorMode === 'dark';
-  const [display, changeDisplay] = React.useState('none');
   return (
-    <Flex>
-      <Flex position="fixed" top="1rem" right="1rem" align="center">
-        {/* Desktop */}
-        <Flex display={['none', 'none', 'flex', 'flex']}>
-          <Link href="/home" passHref>
-            <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-              Home
-            </Button>
-          </Link>
-          <Link href="/about" passHref>
-            <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
-              About
-            </Button>
-          </Link>
-
-          <Link href="/dashboard" passHref>
-            <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
-              Dashboard
-            </Button>
-          </Link>
-        </Flex>
-
-        {/* Mobile */}
-        <IconButton
-          aria-label="Open Menu"
-          size="lg"
-          mr={2}
-          icon={<HamburgerIcon />}
-          onClick={() => changeDisplay('flex')}
-          display={['flex', 'flex', 'none', 'none']}
-        />
-        <Switch color="#green" isChecked={isDark} onChange={toggleColorMode} />
-      </Flex>
-
-      {/* Mobile Content */}
+    <>
       <Flex
-        w="100vw"
-        display={display}
-        bgColor="gray.50"
-        zIndex={20}
-        h="100vh"
-        pos="fixed"
-        top="0"
-        left="0"
-        overflowY="auto"
-        flexDir="column"
+        paddingX="112px"
+        width="100vw"
+        height="104px"
+        background="rgba(184, 216, 186, 0.5)"
+        alignItems="center"
+        justifyContent="space-between"
+        fontFamily="Ver"
       >
-        <Flex justify="flex-end">
-          <IconButton
-            mt={2}
-            mr={2}
-            aria-label="Open Menu"
-            size="lg"
-            icon={<CloseIcon />}
-            onClick={() => changeDisplay('none')}
-          />
-
-          <Flex flexDir="column" align="center">
-            <Link href="/" passHref>
-              <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-                Home
-              </Button>
-            </Link>
-
-            <Link href="/about" passHref>
-              <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
-                About
-              </Button>
-            </Link>
-
-            <Link href="/contact" passHref>
-              <Button
-                as="a"
-                variant="ghost"
-                aria-label="Contact"
-                my={5}
-                w="100%"
-              >
-                Contact
-              </Button>
-            </Link>
-          </Flex>
+        <Image
+          width="187px"
+          height="58px"
+          src={require('../Logo.png')}
+          alt="logo"
+        ></Image>
+        <Flex fontSize="16px" gap="32px">
+          <Link _hover _active={{ fontWeight: 'bold' }}>
+            About
+          </Link>
+          <Link _hover _active={{ fontWeight: 'bold' }}>
+            Login/Create Acoount
+          </Link>
         </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
