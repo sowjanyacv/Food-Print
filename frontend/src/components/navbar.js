@@ -7,11 +7,12 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import React from 'react';
 
 export const NavBar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === 'dark';
-  const [display, changeDisplay] = useState('none');
+  const [display, changeDisplay] = React.useState('none');
   return (
     <Flex>
       <Flex position="fixed" top="1rem" right="1rem" align="center">
@@ -57,7 +58,6 @@ export const NavBar = () => {
         pos="fixed"
         top="0"
         left="0"
-        zIndex={20}
         overflowY="auto"
         flexDir="column"
       >
@@ -71,24 +71,31 @@ export const NavBar = () => {
             onClick={() => changeDisplay('none')}
           />
 
-        <Flex flexDir="column" align="center" >
-          <Link href="/" passHref>
-            <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
-              Home
-            </Button>
-          </Link>
+          <Flex flexDir="column" align="center">
+            <Link href="/" passHref>
+              <Button as="a" variant="ghost" aria-label="Home" my={5} w="100%">
+                Home
+              </Button>
+            </Link>
 
-          <Link href="/about" passHref>
-            <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
-              About
-            </Button>
-          </Link>
+            <Link href="/about" passHref>
+              <Button as="a" variant="ghost" aria-label="About" my={5} w="100%">
+                About
+              </Button>
+            </Link>
 
-          <Link href="/contact" passHref>
-            <Button as="a" variant="ghost" aria-label="Contact" my={5} w="100%">
-              Contact
-            </Button>
-          </Link>
+            <Link href="/contact" passHref>
+              <Button
+                as="a"
+                variant="ghost"
+                aria-label="Contact"
+                my={5}
+                w="100%"
+              >
+                Contact
+              </Button>
+            </Link>
+          </Flex>
         </Flex>
       </Flex>
     </Flex>
