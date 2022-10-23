@@ -25,7 +25,7 @@ const ScannerForm = ({getIsResults}) => {
   const [receiptFoodLog, setReceiptFoodLog] = useState('');
   const [carbonFootprintScore, setCarbonFootprintScore] = useState('');
   const [reminder, setReminder] = useState('');
-  const [scanLoading, setScanLoading] = useState(true);
+  const [scanLoading, setScanLoading] = useState(false);
 
 
   const uploadFile = async (e) => {
@@ -37,7 +37,6 @@ const ScannerForm = ({getIsResults}) => {
     if(!file) return;
 
     setScanLoading(true);
-    console.log('uploadedFile', file);
     const formData = new FormData();
     formData.append("title", 'receipt');
     formData.append('file', file);
