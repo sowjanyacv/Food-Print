@@ -12,13 +12,13 @@
 }
 
 .dashboard-container {
-    width:95%;
+    width:90%;
     height:80%;
     display:flex;
 }
 
 .dashboard-scanner {
-    width:60%;
+    width:55%;
     margin-right:20px;
 }
 
@@ -27,10 +27,7 @@
     font-size: 40px;
     font-weight: bold;
     margin-bottom:15px;
-}
-
-.dashboard-user {
-    width:40%;
+    margin-top:-10Px;
 }
 
 .upload-input[type="file"] { 
@@ -118,7 +115,7 @@
 
   p.results-text-details {
     font-size: 16px;
-    line-height:1.2;
+  line-height:0.9;
     display:inline;
   }
 
@@ -162,3 +159,86 @@
   .cta-results button {
     margin-right: 10Px;
   }
+
+  /* //dashboard user */
+
+  .dashboard-user {
+    width:45%;
+    background-color:#B8D8BA;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+  .user-info-container {
+    display: flex;
+    width: 80%;
+    height:100px;
+    justify-content: space-evenly;
+    margin-top:20px;
+  }
+
+  .user-info-container h1 {
+    font-weight:bold;
+  }
+
+  .user-info-container h1, h2 {
+    color:#1C7C54;
+  }
+
+  .user-info-container img{
+    object-fit: contain;
+  }
+
+  /* //reminders on dashbaord */
+
+  .reminders-section {
+    margin-top:20Px;
+  }
+
+  .reminder-details-text {
+    line-height:0.8;
+    text-align:left;
+  }
+
+  .reminder-wrapper {
+    background-color:white;
+    padding: 20px 15px;
+    display:flex;
+    margin-top:20px;
+    border-radius:6px;
+  }
+
+
+  .exclamationMark-container{
+    background-color:#B8D8BA;
+    border-radius:12px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    width:45px;
+    height:45px;
+    margin-right:10Px;
+  }
+
+  .reminder-details {
+    display:flex;
+    align-items:center;
+  }
+
+  .reminder-details p {
+    font-size: 16px;
+  }
+
+  .reminder-details span {
+    font-size: 10px;
+  }
+
+  img.arrowRight {
+    width: 20px;
+    margin-left:10Px;
+  }
+
+
+

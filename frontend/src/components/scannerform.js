@@ -24,8 +24,8 @@ import axios from "axios";
 
 const ScannerForm = ({getIsResults}) => {
 
-  const [receiptFoodLog, setReceiptFoodLog] = useState('ham, beef, peers');
-  const [carbonFootprintScore, setCarbonFootprintScore] = useState('high');
+  const [receiptFoodLog, setReceiptFoodLog] = useState('');
+  const [carbonFootprintScore, setCarbonFootprintScore] = useState('');
   const [reminder, setReminder] = useState('');
   const [scanLoading, setScanLoading] = useState(false);
 

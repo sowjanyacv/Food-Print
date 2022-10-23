@@ -16,10 +16,10 @@ import './App.css';
 
 function App() {
 
-  useEffect(() => {
-    axios.post('/users/login', {email: 'test10@email.com', password: '1234678'})
-    .then(({data}) => console.log(data.message));
-  }, [])
+  // useEffect(() => {
+  //   axios.post('/users/login', {email: 'test10@email.com', password: '1234678'})
+  //   .then(({data}) => console.log(data.message));
+  // }, [])
 
   return (
     <Router>
