@@ -20,7 +20,6 @@ export const NavBar = (props) => {
 
   const logout = () => {
     axios('/logout').then(() => {
-      console.log('success logout');
       localStorage.removeItem('user');
       setLoggedIn(false);
       history.push('/login')

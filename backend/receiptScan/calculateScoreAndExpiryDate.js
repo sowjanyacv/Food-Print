@@ -39,8 +39,6 @@ if(highCarbonFoodScore > halfItems){
 
 const reminderText = `${expiryDateFruitsVeggies}${expiryDateAnimalBased}${expiryDateFishMeat}`;
 
-console.log(carbonFootprintScore, reminderText);
-
 return {carbonFootprintScore: carbonFootprintScore, reminder: reminderText}
 };
 

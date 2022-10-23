@@ -22,10 +22,8 @@ export function UserRegistration(props) {
   const history = useHistory();
 
   const registerUser = () => {
-    console.log('username', username, 'email', email, 'password', password);
     axios.post('/users/register', {username, email, password})
     .then(({data}) =>{
-      console.log('data', data)
       localStorage.setItem('user', username);
       props.isUserLogged(true);
       history.push('/about')

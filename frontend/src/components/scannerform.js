@@ -25,7 +25,6 @@ const ScannerForm = ({getIsResults, getPointIncrease}) => {
 
     setScanLoading(true);
     getIsResults('Scanning...');
-    //console.log('uploadedFile', file);
     const formData = new FormData();
     formData.append("title", 'receipt');
     formData.append('file', file);

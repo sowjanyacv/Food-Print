@@ -17,7 +17,6 @@ function App() {
   const [isUserLogged, setIsUserLogged] = React.useState(false);
 
   const getIsUserLogged = (status) => {
-    console.log('status', status);
     setIsUserLogged(status)
   }
 

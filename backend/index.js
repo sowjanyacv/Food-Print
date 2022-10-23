@@ -87,12 +87,9 @@ app.post("/users/login", async (req, res) => {
             email
         ]);
 
-        console.log('userInfo', userInfo);
-
         if(userInfo && userInfo?.rows?.length > 0){
             const passwordDB = userInfo.rows[0].user_password;
             const passwordMatched = await bcrypt.compareSync(password, passwordDB);
-            console.log('userInfo.rows[0].username', userInfo.rows[0].username);
 
             if(passwordMatched){
                 req.session.userId = userInfo.rows[0]?.id;
@@ -117,7 +114,6 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 app.post('/receipts/scan', async (req, res) => {
-    console.log('req.file', req.file);
 
     uploader.single("file")(req, res, function(err) {
         if (err instanceof multer.MulterError) {
@@ -127,19 +123,14 @@ app.post('/receipts/scan', async (req, res) => {
         }
     
         if (req.file) {
-            console.log('req.file.path', req.file.path);
           cloudinary.uploader.upload(req.file.path, async function(result) {
             const uploadedUrl = result.secure_url;
-            console.log('uploadedUrl', uploadedUrl);
     
         const response = await ocrSpace(uploadedUrl);
         const receiptFoodLog = await getTextFromImage(response.ParsedResults && response.ParsedResults[0].ParsedText);
-            console.log('receiptFoodLog ', receiptFoodLog);
 
         const {carbonFootprintScore, reminder} = calculateScoreAndExpiryDate(receiptFoodLog);
-        console.log(carbonFootprintScore, reminder);
         const userId = req.session.userId;
-        console.log(userId);
 
         await pool.query(
             "INSERT INTO receipts(user_id, food_log, score, reminder) VALUES($1,$2,$3,$4)",
@@ -192,7 +183,6 @@ app.get("/users/verify", (req, res) => {
 
 
 app.get("/logout", (req, res) => {
-  console.log('LOGOUT');
   req.session.userId = null;
   res.status(200).json({status: 'ok'})
 });

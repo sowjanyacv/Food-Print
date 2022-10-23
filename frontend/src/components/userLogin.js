@@ -20,12 +20,9 @@ export function UserLogin(props) {
   const [password, setPassword] = React.useState('');
   const history = useHistory();
 
-  console.log('user login', props);
-
   const loginUser = () => {
       axios.post('/users/login', {email, password})
       .then(({data}) =>{
-        console.log('data', data)
         localStorage.setItem('user', data.username);
         props.isUserLogged(true);
         history.push('/dashboard')
