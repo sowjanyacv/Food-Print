@@ -12,7 +12,7 @@
 }
 
 .dashboard-container {
-    width:90%;
+    width:85%;
     height:80%;
     display:flex;
 }
@@ -37,7 +37,7 @@
   }
 
   .pictureIcon {
-    width:45px;
+    width:37px;
   }
 
   .pictureLabel {
@@ -48,21 +48,22 @@
     justify-content: center;
     align-items:center;
     flex-direction:column;
+    border: 1px dashed black;
+    padding: 10px 0;
   }
 
   .pictureLabel p {
-    font-size:14px;
+    font-size:10px;
     font-weight:bold;
     margin-top:5px;
   }
 
   .receiptForm {
-    border: 1px dashed black;
     width:90%;
-    height:45%;
     display:flex;
     justify-content: center;
     align-items:center;
+    flex-direction:column;
   }
 
 
@@ -78,7 +79,7 @@
     display: flex;
     align-items: center;
     border: 1px solid #1C7C54;
-    width: 40%;
+    width: 370px;
     font-size: 16px;
     font-weight: bold;
     height: 100Px;
@@ -88,16 +89,22 @@
   .carbonFootprintScore-text {
     background-color: #B8D8BA;
     height: 100%;
+    width:50%;
     display: flex;
     align-items: center;
+
+  }
+
+  .carbonFootprintScore-text p {
+    line-height:1.1;
   }
 
   .carbonFootprintScore{
-    border-left: 1px solid #1C7C54;
     height: 100%;
+    width:50%;
     display: flex;
     align-items: center;
-    padding: 0 10Px;
+    justify-content: center;
   }
 
   p.foodDetails-results {
@@ -111,11 +118,11 @@
 
  .text-container-results-details {
     width:80%;
+    line-height:1;
   }
 
   p.results-text-details {
     font-size: 16px;
-  line-height:0.9;
     display:inline;
   }
 
@@ -219,7 +226,7 @@
     align-items:center;
     width:45px;
     height:45px;
-    margin-right:10Px;
+    margin-right:15Px;
   }
 
   .reminder-details {
