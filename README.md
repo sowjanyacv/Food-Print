@@ -2,7 +2,7 @@
 
 Our submission for the Athena Hcakathon in October 2022 on the theme "How can households reduce their carbon footprint?".
 
-FoodPrint is a web app that tackles food consumption's impact on carbon footprint emissions.
+FoodPrint is a web app that scans food receipts and detects high carbon footackles food consumption's impact on carbon footprint emissions.
 
 ## App Features
 - Scans users’ groceries receipt to calculate the food items’ carbon footprint 
@@ -55,6 +55,9 @@ Audrey (developer), Sowjanya(developer), Kate (developer), Nadia (designer), Ade
 ## Screenshots 
 
 !['home'](home.png)
+!['register'](register.png)
+!['login'](login.png)
 !['dashboard'](dashboard-1.png)
 !['dashboard'](dashboard-2.png)
 !['dashboard'](dashboard-3.png)
+!['receipts'](receipts.png)
