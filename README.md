@@ -1,8 +1,10 @@
 # Athena October 2022 Hackathon - FoodPrint
 
-Our submission for the Athena Hcakathon in October 2022 on the theme "How can households reduce their carbon footprint?".
+Our submission for the Athena Hackathon (virtual, October 2022) on the theme "How can households reduce their carbon footprint?".
 
-FoodPrint is a web app that scans food receipts and detects high carbon footackles food consumption's impact on carbon footprint emissions.
+FoodPrint is a web app that scans food receipts and detects high carbon footprint. The app also sends reminders to avoid food waste, tracks users' previous receipts scans, and uses gamification (with points and special badges) to encourage user engagement.
+
+---> [video presentation](https://youtu.be/Qx8cQ43fTnI)
 
 ## App Features
 - Scans users’ groceries receipt to calculate the food items’ carbon footprint 
@@ -19,7 +21,7 @@ We built our app with the security of our users in mind: we use cookie session f
 - Connecting users to local food producers with search and messaging features
 
 ## Hackathon 
-We teamed up for the Hackathon and had a great time imagining and building this app from scratch in only 35 hours!
+We met and teamed up for the Hackathon. Working remotely, we had a great time imagining and building this app from scratch in only 35 hours!
 
 ## Tech stack
 React, Node.js, Express, PostgreSQL, OCR API <br />
@@ -35,7 +37,7 @@ npm install
 
 - Set up a PostgreSQL database:
 
-Set up a PostgreSQL database (download [PostgreSQL](https://www.postgresql.org/download/) if necessary) and add the database credentials in a `.env` file. Once the database is created, connect to your database `psql -d databaseName`, and create the tables found in `database/tables`.
+Set up a PostgreSQL database (download [PostgreSQL](https://www.postgresql.org/download/) if necessary) and add the database credentials in a `.env` file. Once the database is created, connect to your database `psql -d databaseName`, and create the tables in `database.sql`in the backend folder.
 
 - Run a development server:
 
@@ -50,7 +52,7 @@ npm start
 ```
 
 ## Credits
-Audrey (developer), Sowjanya(developer), Kate (developer), Nadia (designer), Adeola (designer)
+Audrey (developer), Sowjanya (developer), Kate (developer), Nadia (UI/UX designer), Adeola (UI/UX designer)
 
 ## Screenshots 
 
