@@ -4,7 +4,7 @@ Our submission for the Athena Hackathon (virtual, October 2022) on the theme "Ho
 
 FoodPrint is a web app that scans groceries receipts and detects high carbon footprint. The app also sends reminders to avoid food waste, tracks users' previous receipts scans, and uses gamification (with points and special badges) to increase user engagement.
 
----> [video presentation](https://youtu.be/Qx8cQ43fTnI)
+---> [video presentation](https://www.youtube.com/watch?v=QaSFLCIoxgs)
 
 ## App Features
 - Scans users’ groceries receipt to calculate the food items’ carbon footprint 
@@ -28,7 +28,7 @@ Another challenge was to determine which food items had a high carbon footprint 
 - Connecting users to local food producers with search and messaging features
 
 ## Hackathon 
-We met teamed up for the Hackathon. Working remotely, we conceptualized and built the app from scratch in only 30 hours. We had a great time and we are proud of the result :)
+We teamed up and worked remotely across different time zones for the Hackathon. We conceptualized and built the app from scratch in only 30 hours. We had a great time and we are proud of the result :)
 
 ## Local installation 
 
